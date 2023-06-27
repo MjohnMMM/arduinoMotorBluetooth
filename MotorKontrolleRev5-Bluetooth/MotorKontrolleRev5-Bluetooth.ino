@@ -13,6 +13,7 @@ int velocity=150;
 const int ledPin = 13;//the led attach to
 char val[4];
 
+// test comment
 
 void setup() {
   //Schritt 1: Setze die Rictung (Polaritaet) des Motor
