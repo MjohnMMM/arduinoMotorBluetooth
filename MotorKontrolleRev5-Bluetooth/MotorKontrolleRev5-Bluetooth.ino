@@ -32,9 +32,9 @@ void setup() {
   //Schritt 3: Setze die Geschwindigkeit (PWM Signal)
   
   // Zusaetzliche Initialisierungsdingen
-  Serial.begin(9600); // zu auf dem Serial Fenster Potentiometerwerte ausdrucken
-
- 
+  Serial.begin(9600); // zu auf dem Serial Fenster Potentiometerwerte ausdrucken  
+  delay(1000);
+  Serial.println("hello from HC-05."); 
 }
 
 void test_loop()
@@ -46,7 +46,6 @@ void test_loop()
 }
 
 void loop() {
-
     
       if( Serial.available() )       // if data is available to read
      {
@@ -103,7 +102,7 @@ void loop() {
     }
     
   delay(1000);
-  Serial.println("hello from HC-05.");
+  
   
 }
 
