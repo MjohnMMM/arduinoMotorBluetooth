@@ -1,11 +1,11 @@
-int terminalA = 12;
-int terminalB = 13;
+int LeftMotorsOn = 12;
+int RightMotorsOn = 13;
 
-int speedA = 3;
-int speedB = 11;
+int leftMotors_PWM_Pin = 3;
+int rightMotors_PWM_Pin = 11;
 
-int brakeA = 9;
-int brakeB = 8;
+int brakesLeft = 9;
+int brakesRight = 8;
 
 int velocity=150;
 
@@ -17,15 +17,15 @@ int counter=0;
 
 void setup() {
   //Schritt 1: Setze die Richtung (Polaritaet) des Motor
-  pinMode(terminalA, OUTPUT);
-  pinMode(terminalB, OUTPUT);
+  pinMode(LeftMotorsOn, OUTPUT);
+  pinMode(RightMotorsOn, OUTPUT);
   
   //Schritt 2: Loese (disengage) die Bremse
-  pinMode(brakeA, OUTPUT);
-  digitalWrite(brakeA, LOW);
+  pinMode(brakesLeft, OUTPUT);
+  digitalWrite(brakesLeft, LOW);
 
-  pinMode(brakeB, OUTPUT);
-  digitalWrite(brakeB, LOW);
+  pinMode(brakesRight, OUTPUT);
+  digitalWrite(brakesRight, LOW);
 
   pinMode(ledPin,OUTPUT);//initialize the ledPin as an output
 
@@ -45,10 +45,10 @@ void setup() {
 
 void test_loop()
 {
-  digitalWrite(terminalA, LOW);    
-  analogWrite(speedA, velocity);
-  digitalWrite(terminalB, HIGH);    
-  analogWrite(speedA, velocity);
+  digitalWrite(LeftMotorsOn, LOW);    
+  analogWrite(leftMotors_PWM_Pin, velocity);
+  digitalWrite(RightMotorsOn, HIGH);    
+  analogWrite(leftMotors_PWM_Pin, velocity);
 
   delay(1000);
   Serial.print("hello from HC-05. ");
@@ -75,36 +75,36 @@ void loop() {
     {
       case '1':
         Serial.println("now entered case 1");
-        digitalWrite(terminalA, LOW);    
-        analogWrite(speedA, velocity);
+        digitalWrite(LeftMotorsOn, LOW);    
+        analogWrite(leftMotors_PWM_Pin, velocity);
       break;
 
       case '2':
         Serial.println("now entered case 2");
-        digitalWrite(terminalA, HIGH);
-        analogWrite(speedA, -velocity);
+        digitalWrite(LeftMotorsOn, HIGH);
+        analogWrite(leftMotors_PWM_Pin, -velocity);
       break;
 
       case '3':
         Serial.println("now entered case 3");
-        digitalWrite(terminalB, LOW);
-        analogWrite(speedB, velocity);
+        digitalWrite(RightMotorsOn, LOW);
+        analogWrite(rightMotors_PWM_Pin, velocity);
       break;
 
       case '4':
         Serial.println("now entered case 4");
-        digitalWrite(terminalB, HIGH);
-        analogWrite(speedB, -velocity);
+        digitalWrite(RightMotorsOn, HIGH);
+        analogWrite(rightMotors_PWM_Pin, -velocity);
       break;
 
       case '5':
         Serial.println("now entered case 5");
-        analogWrite(speedA, 0);
+        analogWrite(leftMotors_PWM_Pin, 0);
       break;
 
       case '6':
         Serial.println("now entered case 6");
-        analogWrite(speedB, 0);
+        analogWrite(rightMotors_PWM_Pin, 0);
       break;
 
       case '7':
@@ -139,9 +139,9 @@ void stopMotor(char motor)
 {
   if(motor=="A")
   {
-    analogWrite(speedA, 0);
+    analogWrite(leftMotors_PWM_Pin, 0);
   }else if(motor=="B"){
-    analogWrite(speedB, 0);
+    analogWrite(rightMotors_PWM_Pin, 0);
   }
   
 }
